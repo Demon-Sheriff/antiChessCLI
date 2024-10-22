@@ -1,5 +1,16 @@
 class Board {
 
+    #letterMap = {
+        'A': 0, 
+        'B': 1,
+        'C': 2,
+        'D': 3,
+        'E': 4, 
+        'F': 5,
+        'G': 6,
+        'H': 7
+    };
+
     constructor() {
         this.board = this.#initialiseBoard();
     }
@@ -25,5 +36,13 @@ class Board {
         });
     }
 
-    
+    convertToCoordinates(playerInput){
+        // A2 -> (6, 0);
+        
+        if(typeof playerInput !== 'string') return;
+        let row = 8 - parseInt(playerInput[1]);
+        let col = this.#letterMap[playerInput[0].toUpperCase()];
+
+        return [row, col];
+    }
 }
