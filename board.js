@@ -1,4 +1,4 @@
-class Board {
+export class Board {
 
     #letterMap = {
         'A': 0, 
@@ -29,16 +29,17 @@ class Board {
     }
 
     displayBoard() {
-
+        console.log(`x----------------x`);
         console.log("  A B C D E F G H");
         this.board.forEach((row, index) => {
             console.log(8 - index, row.join(' '));
         });
+        console.log(`x----------------x`);
     }
 
     convertToCoordinates(playerInput){
         // A2 -> (6, 0);
-
+        // console.log(playerInput);
         let row = 8 - parseInt(playerInput[1]);
         let col = this.#letterMap[playerInput[0].toUpperCase()];
 

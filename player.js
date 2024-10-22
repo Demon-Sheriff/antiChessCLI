@@ -1,6 +1,5 @@
 import readline from 'readline';
-
-class Player {
+export class Player {
 
     constructor(color) {
         this.color = color;
@@ -14,12 +13,10 @@ class Player {
         });
 
         return new Promise(resolve => {
-            rl.question(`${this.name}, enter your move (e.g. A2 B4) or 'q' to quit: `, answer => {
+            rl.question(`${this.name}, enter your move (e.g. A2 B4) or 'q' to quit: `, (answer) => {
                 rl.close();
                 resolve(answer.trim()); // remove white spaces in the input.
             });
         });
     }
 }
-
-export default Player;
