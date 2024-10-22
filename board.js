@@ -59,4 +59,13 @@ class Board {
 
         return true;
     }
+
+    movePiece(from, to){
+        const [fromX, fromY] = this.convertToCoordinates(from);
+        const [toX, toY] = this.convertToCoordinates(to);
+        const currentPiece = this.board[fromX][fromY];
+
+        this.board[fromX][fromY] = '.';
+        this.board[toX][toY] = currentPiece;
+    }
 }
