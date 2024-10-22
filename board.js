@@ -39,7 +39,6 @@ class Board {
     convertToCoordinates(playerInput){
         // A2 -> (6, 0);
 
-        if(typeof playerInput !== 'string') return;
         let row = 8 - parseInt(playerInput[1]);
         let col = this.#letterMap[playerInput[0].toUpperCase()];
 
@@ -67,5 +66,28 @@ class Board {
 
         this.board[fromX][fromY] = '.';
         this.board[toX][toY] = currentPiece;
+    }
+
+    isCaptureAvailable(currentPlayer) {
+        return false;
+    }
+
+    checkForWinningCondition() {
+
+        // if no pieces are left then the game ends.
+        let whitePieces = 0;
+        let blackPieces = 0;
+        this.board.forEach((row) => {
+            row.forEach((piece) => {
+                if(piece !== '.') {
+                    if(piece === piece.toUpperCase()) whitePieces++;
+                    else blackPieces++;
+                }
+            });
+        });
+
+        if(whitePieces === 0) return 'black';
+        if(blackPieces === 0) return 'white';
+        return null;
     }
 }
