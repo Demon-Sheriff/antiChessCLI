@@ -43,9 +43,18 @@ class Game {
                     this.board.movePiece(from, to);
                     this.board.displayBoard();
 
-                    const winner = this.board.checkforWinningCondition()
+                    const winner = this.board.checkforWinningCondition();
+                    if(winner){ // if we have a valid winner
+                        console.log(`Winner: ${winner === 'white' ? 'Player 1' : 'Player 2'}`);
+                        gameOver = true;
+                    }
+
+                    // switch the player
+                    this.currentPlayer = (this.currentPlayer === 'white') ? 'black' : 'white';
                 }
             }
         }
     }
 }
+
+export default Game;
