@@ -38,11 +38,25 @@ class Board {
 
     convertToCoordinates(playerInput){
         // A2 -> (6, 0);
-        
+
         if(typeof playerInput !== 'string') return;
         let row = 8 - parseInt(playerInput[1]);
         let col = this.#letterMap[playerInput[0].toUpperCase()];
 
         return [row, col];
+    }
+
+    // check if the move for moving from to 'to' is legal or not.
+    isLegalMove(from, to, currentPlayer) {
+
+        const [fromX, fromY] = this.convertToCoordinates(from);
+        const [toX, toY] = this.convertToCoordinates(to);
+        const currentPosition = this.board[fromX][fromY];
+        const targetPosition = this.board[toX][toY];
+
+        if(targetPosition !== '.' || (currentPlayer === 'white' && currentPosition === currentPosition.toLowerCase()) || (currentPlayer === 'black' && currentPosition === currentPosition.toLowerCase()))
+            return false;
+
+        return true;
     }
 }
